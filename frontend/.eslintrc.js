@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
   'env': {
     'browser': true,
@@ -49,7 +50,20 @@ module.exports = {
         'argsIgnorePattern': '^_+$',
       }
     ],
-    '@typescript-eslint/explicit-module-boundary-types': 'off'
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/member-delimiter-style': [
+      'error',
+      {
+        'multiline': {
+          'delimiter': 'semi',
+          'requireLast': true
+        },
+        'singleline': {
+          'delimiter': 'semi',
+          'requireLast': false
+        }
+      }
+    ]
   },
   'settings': {
     'react': {'version': 'detect'}
