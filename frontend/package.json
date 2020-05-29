@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "main": "index.js",
   "scripts": {
     "watch": "parcel watch src/index.html",
     "serve": "parcel serve src/index.html",

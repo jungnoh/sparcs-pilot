@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "pre-commit": "run-s pre-commit-front pre-commit-back",
+    "pre-commit": "run-s pre-commit-common pre-commit-front pre-commit-back",
     "pre-commit-front": "cd frontend && npm run lint-staged",
-    "pre-commit-back": "cd backend && npm run lint-staged"
+    "pre-commit-back": "cd backend && npm run lint-staged",
+    "pre-commit-common": "cd common && npm run lint-staged"
   },
   "keywords": [],
   "author": "",

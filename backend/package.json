@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "main": "index.js",
   "scripts": {
     "dev": "ts-node -r tsconfig-paths/register src/www.ts",
     "lint-staged": "lint-staged"
