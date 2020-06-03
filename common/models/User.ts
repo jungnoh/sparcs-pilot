@@ -14,12 +14,15 @@ export interface UserProfile {
   phone: string;
 }
 
+export interface UserSignup extends UserProfile {
+  // 비밀번호
+  password: string;
+}
+
 /**
  * @description 사용자 모델
  */
-export interface User extends UserProfile {
-  // 비밀번호
-  password: string;
+export interface User extends UserSignup {
   // 생성일자
   createdAt: Date;
 }
