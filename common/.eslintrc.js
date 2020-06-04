@@ -35,8 +35,8 @@ module.exports = {
       'single'
     ],
     'semi': [
-      'error',
-      'always'
+      'off',
+      'last'
     ],
     '@typescript-eslint/no-unused-vars': [
       'error',
