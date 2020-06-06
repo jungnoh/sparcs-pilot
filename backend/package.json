@@ -19,7 +19,6 @@
     "@types/helmet": "0.0.47",
     "@types/mongoose": "^5.7.21",
     "@types/morgan": "^1.9.0",
-    "@types/passport": "^1.0.3",
     "@types/passport-local": "^1.0.33",
     "argon2": "^0.26.2",
     "connect-mongo": "^3.2.0",
