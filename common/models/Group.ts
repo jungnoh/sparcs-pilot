@@ -3,6 +3,8 @@ import Restaurant from './Restaurant';
 import { User } from './User';
 import { ObjectId } from 'bson';
 
+export type MeetTimes = '0-2'|'2-4'|'11-13'|'17-19'|'19-21'|'21-24';
+
 export default interface Group {
   title: string;
   category: FoodCategory;
@@ -10,7 +12,7 @@ export default interface Group {
   
   createdAt: Date;
   meetDate: Date;
-  meetTime: '0-2'|'2-4'|'11-13'|'17-19'|'19-21'|'21-24';
+  meetTime: MeetTimes;
   
   owner: ObjectId | User;
   members: {
