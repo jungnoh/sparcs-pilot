@@ -3,7 +3,7 @@ import {Request, Response, NextFunction} from 'express';
 import * as GroupService from 'services/group';
 
 /**
- * @description Controller for `GET categories/list`
+ * @description Controller for `GET /categories/list`
  */
 export async function listCategories(_: Request, res: Response, next: NextFunction) {
   try {
