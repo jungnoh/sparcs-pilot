@@ -52,6 +52,16 @@ export async function listRestaurants(category?: string): Promise<RestaurantDoc[
   return await query;
 }
 
+export async function addRestaurant(name: string, categories: ObjectId[], user?: ObjectId): Promise<RestaurantDoc> {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const payload: {[key: string]: any} = {categories, name};
+  if (user) {
+    payload.createdBy = user;
+  }
+  const newObj = await RestaurantModel.create(payload);
+  return newObj;
+}
+
 export async function viewGroup(id: ObjectId): ServiceResult<void, GroupDoc | null> {
   const result = await GroupModel.findById(id)
     .populate('members', 'username phone dorm email name')

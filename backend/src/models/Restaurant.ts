@@ -7,6 +7,7 @@ const schema = new mongo.Schema<Restaurant>({
     default: [],
     type: [{ref: 'FoodCategory', type: ObjectId}]
   },
+  createdBy: {ref: 'User', type: ObjectId, required: false},
   name: {required: true, type: String}
 });
 
