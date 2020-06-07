@@ -1,13 +1,13 @@
 import UserModel, {UserDoc} from 'models/User';
 import { ServiceResult } from 'utils/types';
-import { hashPassword, verifyPassword } from 'utils/crypto';
-import { UserSignup } from '@common/models/User';
+import * as Crypto from 'utils/crypto';
+import { UserSignup, UserProfile } from '@common/models/User';
 import Errors from '@common/literals/errors';
 
 export async function authenticate(username: string, password: string): ServiceResult<void, UserDoc> {
   const user = await UserModel.findOne({username});
   if (!user) return {success: true};
-  if (!(await verifyPassword(user.password, password))) {
+  if (!(await Crypto.verifyPassword(user.password, password))) {
     return {success: true};
   }
   return {success: true, result: user};
@@ -51,10 +51,24 @@ ServiceResult<typeof Errors.USERNAME_EXISTS | typeof Errors.EMAIL_EXISTS, UserDo
     }
   }
   const userObj = await UserModel.create(Object.assign(profile, {
-    password: await hashPassword(profile.password),
+    password: await Crypto.hashPassword(profile.password),
   }));
   return {
     success: true,
     result: userObj
   };
+}
+
+export async function update(username: string, profile: Partial<UserProfile>, password?: string):
+ServiceResult<'USER_NEXIST'> {
+  const userObj = await UserModel.findById({username});
+  if (!userObj) {
+    return {reason: 'USER_NEXIST', success: false};
+  }
+  Object.assign(userObj, profile);
+  if (password !== undefined) {
+    userObj.password = await Crypto.hashPassword(password);
+  }
+  await userObj.save();
+  return {success: true};
 }
