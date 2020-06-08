@@ -60,6 +60,5 @@ export default async function createApp(_ = false): Promise<express.Express> {
   app.all('*', (_, res) => {
     res.status(404).json({success: false});
   });
-
   return app;
 }

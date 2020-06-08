@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "run-p dev:backend dev:frontend",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:frontend": "cd frontend && npm run watch",
     "pre-commit": "run-s pre-commit-common pre-commit-front pre-commit-back",
     "pre-commit-front": "cd frontend && npm run lint-staged",
     "pre-commit-back": "cd backend && npm run lint-staged",
@@ -20,5 +23,8 @@
     "hooks": {
       "pre-commit": "npm run pre-commit"
     }
+  },
+  "dependencies": {
+    "cross-env": "^7.0.2"
   }
 }
