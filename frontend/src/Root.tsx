@@ -1,8 +1,11 @@
 import React from 'react';
-import styles from './Root.scss';
+import {BrowserRouter as Router} from 'react-router-dom';
+import App from '@components/App';
 
 export default function Root() {
   return (
-    <div className={styles.title}>Hi</div>
+    <Router>
+      <App />
+    </Router>
   );
 }

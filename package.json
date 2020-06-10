@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "run-p dev:backend dev:frontend",
     "dev:backend": "cd backend && npm run dev",
-    "dev:frontend": "cd frontend && npm run watch",
+    "dev:frontend": "cd frontend && npm run dev",
     "pre-commit": "run-s pre-commit-common pre-commit-front pre-commit-back",
     "pre-commit-front": "cd frontend && npm run lint-staged",
     "pre-commit-back": "cd backend && npm run lint-staged",
@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "css-loader": "^3.5.3",
     "husky": "^4.2.5",
     "npm-run-all": "^4.1.5"
   },
