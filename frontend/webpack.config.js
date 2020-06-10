@@ -13,16 +13,11 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
         }
-      },
-      {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/,
       },
       {
         test: /\.s[ac]ss$/i,
