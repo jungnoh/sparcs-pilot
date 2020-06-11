@@ -185,7 +185,7 @@ ServiceResult<'USER_NEXIST', GroupDoc[]> {
       ]
     });
   }
-  if (isOwner) {
+  else if (isOwner) {
     query = GroupModel.find({owner: userObj._id});
   } else {
     query = GroupModel.find({members: {$elemMatch: {user: userObj._id}}});

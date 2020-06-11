@@ -69,7 +69,7 @@ export default function GroupView(props: GroupViewProps) {
         </span>
         <span>먹을 종류: {props.category}</span>
         <span>
-          약속 시간: {moment(props.meetDate).format('yyyy년 MM월 DD일')}, {meetTimeText}
+          약속 시간: {moment(props.meetDate).add('h', 9).format('yyyy년 MM월 DD일')}, {meetTimeText}
         </span>
       </div>
       <Typography color="secondary">채팅방의 이름을 {props.isOwner ? '사이트 이름과 똑같이' : `${joinName}(으)로`} 설정해 주세요!</Typography>

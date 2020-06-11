@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import styles from './create.scss';
 import { Button, Card, Typography, TextField, MenuItem } from '@material-ui/core';
 import { MEET_TIMES } from '@src/types/constants';
+import { ensureLogin } from '@src/util';
 
 const getHour = () => {
   return moment().subtract('hours', 6).hour();
@@ -12,6 +13,8 @@ const getHour = () => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function createPage(props: {history: any}) {
+  ensureLogin(props.history);
+
   const [title, setTitle] = React.useState('');
   const [talkLink, setTalkLink] = React.useState('');
   const [categories, setCategories] = React.useState<{key: string; name: string}[]>([]);
