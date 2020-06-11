@@ -59,7 +59,8 @@ export default function GroupListItem(props: GroupListItemProps) {
           약속 시간: {moment(props.meetDate).format('yyyy년 MM월 DD일')}, {meetTimeText}
         </span>
       </div>
-      <Button variant="contained" color="primary" onClick={handleJoin} className={styles.talkBtn}>
+      <Button variant="contained" color="primary" onClick={handleJoin} className={styles.talkBtn}
+        disabled={props.peopleCnt >= props.peopleNeeded}>
         참여하기
       </Button>
     </Card>
