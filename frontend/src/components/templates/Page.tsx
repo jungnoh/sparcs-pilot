@@ -22,7 +22,7 @@ export default function PageTemplate(props: PageProps) {
   };
 
   const userMenu = (<>
-    <MenuItem><Link to="/my" className={styles.menuItem}>마이페이지</Link></MenuItem>
+    <MenuItem><Link to="/me" className={styles.menuItem}>마이페이지</Link></MenuItem>
     <MenuItem><Link to="/auth/logout" className={styles.menuItem}>로그아웃</Link></MenuItem>
   </>);
   const guestMenu = (<>

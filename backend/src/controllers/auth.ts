@@ -30,8 +30,11 @@ export const login = [
     }
   },
   passport.authenticate('local', {failWithError: true}),
-  (_: Request, res: Response) => {
-    res.json({});
+  (req: Request, res: Response) => {
+    res.json({
+      username: req.user?.username,
+      name: req.user?.name
+    });
   },
   (err: any, _: Request, res: Response, __: NextFunction) => {
     /**

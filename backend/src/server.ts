@@ -7,6 +7,8 @@ import mongoose from 'mongoose';
 import morgan from 'morgan';
 import winston from 'winston';
 import router from 'routes';
+import passport from 'passport';
+import * as PassportStrategy from 'utils/passport';
 
 async function connectDB() {
   try {
@@ -55,6 +57,12 @@ export default async function createApp(_ = false): Promise<express.Express> {
   app.use(express.json());
   app.use(express.urlencoded({extended: true}));
   app.use(cookieParser());
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+  passport.use(PassportStrategy.localStrategy);
+  passport.serializeUser(PassportStrategy.serialize);
+  passport.deserializeUser(PassportStrategy.deserialize);
 
   app.use(router);
   app.all('*', (_, res) => {

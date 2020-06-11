@@ -13,7 +13,7 @@ export const localStrategy = new LocalStrategy({
   usernameField: 'username'
 }, async (_, username, password, done) => {
   try {
-    const user = await UserService.authenticate(username, password);
+    const user = (await UserService.authenticate(username, password)).result;
     if (!user) {
       return done(Errors.WRONG_CREDENTIALS);
     }
