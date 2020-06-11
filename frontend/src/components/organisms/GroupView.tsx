@@ -1,5 +1,6 @@
-import { Card, Typography, Button } from '@material-ui/core';
+import { Card, Typography, Button, ExpansionPanel, ExpansionPanelSummary, ExpansionPanelDetails } from '@material-ui/core';
 import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import axios from 'axios';
 import moment from 'moment';
 import React from 'react';
@@ -78,9 +79,22 @@ export default function GroupView(props: GroupViewProps) {
           오픈채팅 참여하기
         </Button>
         {props.allowLeave && (
-          <Button color="primary" onClick={handleGroupLeave}>모임 나가기</Button>
+          <Button color="primary" onClick={handleGroupLeave} className={styles.leaveBtn}>모임 나가기</Button>
         )}
       </div>
+      <ExpansionPanel style={{boxShadow: 'none', margin: '0'}}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography style={{fontWeight: 'bold'}}>모임 참여자 보기</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails style={{flexDirection: 'column'}}>
+          <span>방장: {`${props.ownerName} (${props.ownerEmail})`}</span>
+          <ul>
+            {props.members.map(x => (
+              <li key={x.nickname}>{x.nickname}: {x.user.dorm} 거주, 이메일 {x.user.email}</li>
+            ))}
+          </ul>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     </Card>
   );
 }

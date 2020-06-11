@@ -191,8 +191,8 @@ ServiceResult<'USER_NEXIST', GroupDoc[]> {
     query = GroupModel.find({members: {$elemMatch: {user: userObj._id}}});
   }
   query = query
-    .populate('owner', 'username name email')
-    .populate('members.user', 'username name email');
+    .populate('owner', 'username dorm name email')
+    .populate('members.user', 'username dorm name email');
   return {
     success: true,
     result: await query
