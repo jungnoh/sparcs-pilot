@@ -7,7 +7,8 @@ import LogoutPage from '@pages/auth/logout';
 import IndexPage from '@pages/index';
 import GroupCreatePage from '@pages/groups/create';
 import GroupViewPage from '@pages/groups/view';
-import MyPage from '@pages/me';
+import MePage from '@pages/me';
+import MeEditPage from '@pages/me/edit';
 import PageTemplate from '@components/templates/Page';
 
 export default function App() {
@@ -20,7 +21,8 @@ export default function App() {
         <Route path="/auth/logout" component={LogoutPage} />
         <Route path="/groups/create" component={GroupCreatePage} />
         <Route path="/groups/:groupID" component={GroupViewPage} />
-        <Route path="/me" component={MyPage} />
+        <Route path="/me/edit" component={MeEditPage} />
+        <Route path="/me" exact component={MePage} />
       </Switch>
     </PageTemplate>
   );

@@ -61,7 +61,7 @@ ServiceResult<typeof Errors.USERNAME_EXISTS | typeof Errors.EMAIL_EXISTS, UserDo
 
 export async function update(username: string, profile: Partial<UserProfile>, password?: string):
 ServiceResult<'USER_NEXIST'> {
-  const userObj = await UserModel.findById({username});
+  const userObj = await UserModel.findOne({username});
   if (!userObj) {
     return {reason: 'USER_NEXIST', success: false};
   }

@@ -1,0 +1,11 @@
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 32px;
+}
+.card {
+  width: 40vw;
+  padding: 16px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppBar, Drawer, Toolbar, Typography, IconButton, MenuItem, Menu, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
-import { Menu as MenuIcon, AccountCircle, Home as HomeIcon, Person as PersonIcon } from '@material-ui/icons';
+import { AccountCircle, Edit as EditIcon, Home as HomeIcon, Menu as MenuIcon, Person as PersonIcon } from '@material-ui/icons';
 import styles from './Page.scss';
 import { Link } from 'react-router-dom';
 
@@ -22,12 +22,12 @@ export default function PageTemplate(props: PageProps) {
   };
 
   const userMenu = (<>
-    <MenuItem><Link to="/me" className={styles.menuItem}>마이페이지</Link></MenuItem>
-    <MenuItem><Link to="/auth/logout" className={styles.menuItem}>로그아웃</Link></MenuItem>
+    <MenuItem onClick={() => setAnchorEl(null)}><Link to="/me" className={styles.menuItem}>마이페이지</Link></MenuItem>
+    <MenuItem onClick={() => setAnchorEl(null)}><Link to="/auth/logout" className={styles.menuItem}>로그아웃</Link></MenuItem>
   </>);
   const guestMenu = (<>
-    <MenuItem><Link to="/auth/login" className={styles.menuItem}>로그인</Link></MenuItem>
-    <MenuItem><Link to="/auth/join" className={styles.menuItem}>회원가입</Link></MenuItem>
+    <MenuItem onClick={() => setAnchorEl(null)}><Link to="/auth/login" className={styles.menuItem}>로그인</Link></MenuItem>
+    <MenuItem onClick={() => setAnchorEl(null)}><Link to="/auth/join" className={styles.menuItem}>회원가입</Link></MenuItem>
   </>);
 
   return (
@@ -75,15 +75,21 @@ export default function PageTemplate(props: PageProps) {
         <div className={styles.drawerSpacing} />
         <List>
           <Link to="/" className={styles.menuItem}>
-            <ListItem button>
+            <ListItem button onClick={() => setDrawerOpen(false)}>
               <ListItemIcon><HomeIcon /></ListItemIcon>
               <ListItemText primary="메인 화면" />
             </ListItem>
           </Link>
           <Link to="/me" className={styles.menuItem}>
-            <ListItem button>
+            <ListItem button onClick={() => setDrawerOpen(false)}>
               <ListItemIcon><PersonIcon /></ListItemIcon>
               <ListItemText primary="마이페이지" />
+            </ListItem>
+          </Link>
+          <Link to="/me/edit" className={styles.menuItem}>
+            <ListItem button onClick={() => setDrawerOpen(false)}>
+              <ListItemIcon><EditIcon /></ListItemIcon>
+              <ListItemText primary="정보 수정" />
             </ListItem>
           </Link>
         </List>

@@ -5,9 +5,11 @@ import queryString from 'query-string';
 import { Button, Typography } from '@material-ui/core';
 import styles from './index.scss';
 import GroupView from '@components/organisms/GroupView';
+import { ensureLogin } from '@src/util';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function MyPage(props: {history: any}) {
+  ensureLogin(props.history);
   const [type, setType] = React.useState<string>((queryString.parse(props.history.location.search).type as string) ?? 'all');
   const [loading, setLoading] = React.useState(true);
   const updateType = (v: string) => {

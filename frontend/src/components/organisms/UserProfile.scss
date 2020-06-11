@@ -1,0 +1,11 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px;
+  & > div {
+    margin-bottom: 16px;
+  }
+}
+.formActions > button {
+  margin-right: 8px;
+}
