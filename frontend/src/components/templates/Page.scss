@@ -6,7 +6,21 @@
 }
 .child {
   padding: 8px;
+  padding-top: 72px;
 }
 .drawer {
   width: 240px;
+}
+.drawerSpacing {
+  height: 72px;
+  width: 240px;
+}
+.menuItem, .menuItem * {
+  text-decoration: none;
+}
+.menuItem span {
+  color: #000;
+}
+.menuItem {
+  color: #000;
 }
