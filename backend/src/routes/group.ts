@@ -26,7 +26,7 @@ router.post('/leave', checkAuthenticated, [
 ], rejectValFail, GroupController.leaveGroup);
 
 router.get('/list', [
-  query('time').isIn(meetTimes)
+  query('time').optional().isIn(meetTimes)
 ], rejectValFail, GroupController.listGroups);
 router.get('/list/:category', [
   query('time').isIn(meetTimes),

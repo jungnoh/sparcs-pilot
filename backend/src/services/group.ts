@@ -73,7 +73,7 @@ export async function addRestaurant(name: string, categories: ObjectId[], user?:
 
 export async function viewGroup(id: ObjectId): ServiceResult<void, GroupDoc | null> {
   const result = await GroupModel.findById(id)
-    .populate('members', 'username dorm email name')
+    .populate('members.user', 'username dorm email name')
     .populate('owner', 'username dorm email name')
     .populate('category')
     .populate('restaurant');
@@ -134,7 +134,7 @@ ServiceResult<'USER_NEXIST'|'GROUP_NEXIST'|'GROUP_FULL'|'USER_IN_GROUP'> {
     return {reason: 'GROUP_FULL', success: false};
   }
   const meLength = groupObj.members.filter(x => (x.user as ObjectId).equals(userObj._id)).length;
-  if (meLength > 0) {
+  if (meLength > 0 || userObj._id.equals(groupObj.owner)) {
     return {reason: 'USER_IN_GROUP', success: false};
   }
   groupObj.members.push({

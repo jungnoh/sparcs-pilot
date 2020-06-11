@@ -1,0 +1,27 @@
+.root {
+  padding: 8px;
+  margin-top: 12px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  & > span {
+    margin-top: 8px;
+  }
+}
+.nameRow {
+  display: flex;
+  align-items: center;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  & > button {
+    margin-top: 8px;
+  }
+}
+.title {
+  user-select: none;
+  cursor: pointer;
+}
