@@ -1,0 +1,22 @@
+.root {
+  padding: 8px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  & > span {
+    margin-top: 8px;
+  }
+}
+.nameRow {
+  display: flex;
+  align-items: center;
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  & > button {
+    margin-top: 8px;
+  }
+}

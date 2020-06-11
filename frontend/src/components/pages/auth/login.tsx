@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import queryString from 'query-string';
 import { Button, Card, Typography, TextField } from '@material-ui/core';
 import commonStyles from './common.scss';
 
@@ -16,7 +17,7 @@ function LoginPage(props: {history: any}) {
       .then((resp) => {
         if (resp.status === 200) {
           sessionStorage.setItem('username', resp.data.username);
-          props.history.push('/');
+          props.history.push(queryString.parse(props.history.location.search)?.return ?? '/');
           return;
         }
         if(resp.status === 401) {

@@ -8,8 +8,8 @@ function IndexPage(props: {history: any}) {
   return (
     <>
       <div className={styles.header}>
-        <Typography variant="h4">그룹 찾아보기</Typography>
-        <Button color="primary" onClick={() => props.history.push('/groups/create')}>직접 그룹 만들기</Button>
+        <Typography variant="h4">오늘의 모임</Typography>
+        <Button color="primary" onClick={() => props.history.push('/groups/create')}>직접 모임 만들기</Button>
       </div>
     </>
   );
