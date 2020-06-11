@@ -5,6 +5,7 @@ import JoinPage from '@pages/auth/join';
 import LoginPage from '@pages/auth/login';
 import LogoutPage from '@pages/auth/logout';
 import IndexPage from '@pages/index';
+import GroupCreatePage from '@pages/groups/create';
 import PageTemplate from '@components/templates/Page';
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/auth/join" component={JoinPage} />
         <Route path="/auth/login" component={LoginPage} />
         <Route path="/auth/logout" component={LogoutPage} />
+        <Route path="/groups/create" component={GroupCreatePage} />
         <Route path="/asdf">asdfasdf</Route>
       </Switch>
     </PageTemplate>

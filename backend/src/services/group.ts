@@ -8,6 +8,15 @@ import { ServiceResult } from 'utils/types';
 import UserModel from 'models/User';
 import { randomString } from 'utils/crypto';
 
+const MEET_TIME_OFFSETS: {[key: string]: number} = {
+  '11-13': 5,
+  '17-19': 11,
+  '19-21': 13,
+  '21-24': 15,
+  '0-2': 18,
+  '2-4': 20
+};
+
 // 새벽 6시가 기준!
 function today(): Date {
   return moment().subtract('hours', 6).set({hour: 0, minute: 0, second: 0, millisecond: 0}).toDate();
@@ -71,6 +80,43 @@ export async function viewGroup(id: ObjectId): ServiceResult<void, GroupDoc | nu
     success: true,
     result
   };
+}
+
+export async function createGroup(group: {
+  owner: ObjectId;
+  category: string;
+  restaurant?: ObjectId;
+  peopleNeeded: number;
+  talkLink: string;
+  title: string;
+  meetTime: string;
+}): ServiceResult<'CATEGORY_NEXIST' | 'RESTAURANT_NEXIST' | 'OWNER_NEXIST', GroupDoc> {
+  const category = await FoodCategoryModel.findOne({key: group.category});
+  const restaurant = group.restaurant && (await RestaurantModel.findOne({key: group.restaurant}));
+  const owner = await UserModel.findById(group.owner);
+  if (!category) {
+    return {success: false, reason: 'CATEGORY_NEXIST'};
+  }
+  if (group.restaurant && !restaurant) {
+    return {success: false, reason: 'RESTAURANT_NEXIST'};
+  }
+  if (!owner) {
+    return {success: false, reason: 'OWNER_NEXIST'};
+  }
+  const meetDate = moment().subtract('hours', 6).set({hour: MEET_TIME_OFFSETS[group.meetTime], minute: 0, second: 0, millisecond: 0}).toDate();
+  const ret = await GroupModel.create({
+    title: group.title,
+    category,
+    restaurant,
+    meetDate,
+    meetTime: group.meetTime as MeetTimes,
+    owner,
+    members: [],
+    peopleNeeded: group.peopleNeeded,
+    locked: false,
+    talkLink: group.talkLink
+  });
+  return {result: ret, success: true};
 }
 
 export async function joinGroup(username: string, group: ObjectId):

@@ -12,6 +12,15 @@ router.post('/join', checkAuthenticated, [
   body('group').exists().isMongoId(),
 ], rejectValFail, GroupController.joinGroup);
 
+router.post('/create', checkAuthenticated, [
+  body('category').exists().notEmpty(),
+  body('restaurant').optional().isMongoId(),
+  body('peopleNeeded').exists().isInt({min: 2, max: 8}).toInt(),
+  body('talkLink').exists().isURL(),
+  body('title').exists().notEmpty(),
+  body('meetTime').exists().isIn(meetTimes)
+], rejectValFail, GroupController.createGroup);
+
 router.post('/leave', checkAuthenticated, [
   body('group').exists().isMongoId()
 ], rejectValFail, GroupController.leaveGroup);

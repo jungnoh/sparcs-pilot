@@ -89,7 +89,9 @@ export default function PageTemplate(props: PageProps) {
         </List>
       </Drawer>
       <div className={styles.child}>
-        {props.children}
+        <div>
+          {props.children}  
+        </div>
       </div>
     </div>
   );

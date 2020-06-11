@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development ts-node-dev -r tsconfig-paths/register --watch ./src src/www.ts",
     "prod": "ts-node -r tsconfig-paths/register --files src/www.ts --project tsconfig.json",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "setup": "ts-node -r tsconfig-paths/register --files src/utils/setupDefaults.ts --project tsconfig.json"
   },
   "keywords": [],
   "author": "",

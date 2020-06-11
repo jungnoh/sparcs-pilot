@@ -19,6 +19,29 @@ export async function joinGroup(req: Request, res: Response, next: NextFunction)
 }
 
 /**
+ * @description Controller for `POST /group/create`
+ */
+export async function createGroup(req: Request, res: Response, next: NextFunction) {
+  try {
+    const result = await GroupService.createGroup({
+      owner: req.user!._id,
+      category: req.body.category,
+      restaurant: req.body.restaurant ? new ObjectId(req.body.restaurant) : undefined,
+      peopleNeeded: req.body.peopleNeeded,
+      talkLink: req.body.talkLink,
+      title: req.body.title,
+      meetTime: req.body.meetTime
+    });
+    if (!result.success) {
+      return res.status(400).json({});
+    }
+    return res.json({id: result.result!._id});
+  } catch(err) {
+    next(err);
+  }
+}
+
+/**
  * @description Controller for `POST /group/leave`
  */
 export async function leaveGroup(req: Request, res: Response, next: NextFunction) {

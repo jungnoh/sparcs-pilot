@@ -1,0 +1,19 @@
+.root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 32px;
+}
+.card {
+  width: 60vw;
+  padding: 16px;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+  & > div {
+    margin-bottom: 8px;
+  }
+}
