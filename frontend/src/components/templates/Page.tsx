@@ -38,7 +38,7 @@ export default function PageTemplate(props: PageProps) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6">
-            Photos
+            치킨팟
           </Typography>
           <div className={styles.userBtn}>
             <IconButton

@@ -21,6 +21,8 @@ async function run() {
     {key: 'chicken', name: '치킨'},
     {key: 'pizza', name: '피자'},
     {key: 'chinese', name: '중국집'},
+    {key: 'meat', name: '고기'},
+    {key: 'fish', name: '회'},
     {key: 'meet', name: '모여서 정해요'}
   ]);
 }
