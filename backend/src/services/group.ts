@@ -141,7 +141,7 @@ ServiceResult<'USER_NEXIST'|'GROUP_NEXIST'|'GROUP_FULL'|'USER_IN_GROUP'> {
     nickname: userObj.name + randomString(2),
     user: userObj._id
   });
-  if (groupObj.members.length >= (groupObj.peopleNeeded+1)) {
+  if ((groupObj.members.length+1) >= groupObj.peopleNeeded) {
     groupObj.locked = true;
   }
   await groupObj.save();
