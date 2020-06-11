@@ -8,7 +8,7 @@ const router = express.Router();
 router.use(checkAuthenticated);
 
 router.get('/groups', [
-  query('owner').exists().isBoolean()
+  query('owner').optional().isBoolean().toBoolean()
 ], rejectValFail, MyController.myGroups);
 
 router.get('/profile', MyController.getProfile);

@@ -170,21 +170,31 @@ ServiceResult<'USER_NEXIST'|'GROUP_NEXIST'|'GROUP_LOCKED'|'USER_NOT_IN_GROUP'> {
   return {success: true};
 }
 
-export async function listUserGroups(username: string, isOwner: boolean):
+export async function listUserGroups(username: string, isOwner?: boolean):
 ServiceResult<'USER_NEXIST', GroupDoc[]> {
   const userObj = await UserModel.findOne({username});
   if (!userObj) {
     return {reason: 'USER_NEXIST', success: false};
   }
-  if (isOwner) {
-    return {
-      result: await GroupModel.find({owner: userObj._id}),
-      success: true
-    };
-  } else {
-    return {
-      result: await GroupModel.find({members: {$elemMatch: {user: userObj._id}}}),
-      success: true
-    };
+  let query;
+  if (isOwner === undefined) {
+    query = GroupModel.find({
+      $or: [
+        {owner: userObj._id},
+        {members: {$elemMatch: {user: userObj._id}}}
+      ]
+    });
   }
+  if (isOwner) {
+    query = GroupModel.find({owner: userObj._id});
+  } else {
+    query = GroupModel.find({members: {$elemMatch: {user: userObj._id}}});
+  }
+  query = query
+    .populate('owner', 'username name email')
+    .populate('members.user', 'username name email');
+  return {
+    success: true,
+    result: await query
+  };
 }

@@ -49,7 +49,11 @@ export default function GroupView(props: GroupViewProps) {
           return;
         }
         alert('그룹을 나갔습니다.');
-        props.history.push('/me');
+        if (props.history.location.pathname === '/me') {
+          props.history.reload();
+        } else {
+          props.history.push('/me');
+        }
       });
   };
 
@@ -67,7 +71,7 @@ export default function GroupView(props: GroupViewProps) {
           약속 시간: {moment(props.meetDate).format('yyyy년 MM월 DD일')}, {meetTimeText}
         </span>
       </div>
-      <Typography color="secondary">채팅방의 이름을 {props.isOwner ? '사이트 이름과 똑같이' : `${joinName}으로`} 설정해 주세요!</Typography>
+      <Typography color="secondary">채팅방의 이름을 {props.isOwner ? '사이트 이름과 똑같이' : `${joinName}(으)로`} 설정해 주세요!</Typography>
       <div className={styles.actions}>
         <Button variant="contained" style={{backgroundColor: 'rgb(255, 224, 52)'}}
           startIcon={<ChatBubbleIcon />} onClick={handleChatOpen} className={styles.talkBtn}>

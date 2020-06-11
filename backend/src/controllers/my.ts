@@ -8,7 +8,7 @@ import * as GroupService from 'services/group';
  */
 export async function myGroups(req: Request, res: Response, next: NextFunction) {
   try {
-    const isOwner = Boolean((req.query.owner as string) ?? 'false');
+    const isOwner = req.query.owner ?? undefined;
     const user = req.user!.username;
     const result = await GroupService.listUserGroups(user, isOwner);
     res.status(result.success ? 200 : 400).json(result);
