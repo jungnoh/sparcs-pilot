@@ -22,14 +22,14 @@ export default function PageTemplate(props: PageProps) {
     setAnchorEl(null);
   };
 
-  const userMenu = (<>
-    <MenuItem onClick={() => setAnchorEl(null)}><Link to="/me" className={styles.menuItem}>마이페이지</Link></MenuItem>
-    <MenuItem onClick={() => setAnchorEl(null)}><Link to="/auth/logout" className={styles.menuItem}>로그아웃</Link></MenuItem>
-  </>);
-  const guestMenu = (<>
-    <MenuItem onClick={() => setAnchorEl(null)}><Link to="/auth/login" className={styles.menuItem}>로그인</Link></MenuItem>
-    <MenuItem onClick={() => setAnchorEl(null)}><Link to="/auth/join" className={styles.menuItem}>회원가입</Link></MenuItem>
-  </>);
+  const userMenu = [
+    (<MenuItem key="1" onClick={() => setAnchorEl(null)}><Link to="/me" className={styles.menuItem}>마이페이지</Link></MenuItem>),
+    (<MenuItem key="2" onClick={() => setAnchorEl(null)}><Link to="/auth/logout" className={styles.menuItem}>로그아웃</Link></MenuItem>)
+  ];
+  const guestMenu = [
+    (<MenuItem key="1" onClick={() => setAnchorEl(null)}><Link to="/auth/login" className={styles.menuItem}>로그인</Link></MenuItem>),
+    (<MenuItem key="2" onClick={() => setAnchorEl(null)}><Link to="/auth/join" className={styles.menuItem}>회원가입</Link></MenuItem>)
+  ];
 
   return (
     <div className={styles.root}>

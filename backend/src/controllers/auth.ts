@@ -50,6 +50,6 @@ export const login = [
 
 export function logout(req: Request, res: Response) {
   req.logout();
-  res.clearCookie('connect.sid'); 
+  res.clearCookie('connect.sid', {path:'/'}); 
   res.json({});
 }

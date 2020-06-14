@@ -15,6 +15,6 @@ router.post('/login', [
   body('password').exists()
 ], rejectValFail, AuthController.login);
 
-router.delete('/logout', AuthController.logout);
+router.post('/logout', AuthController.logout);
 
 export default router;
