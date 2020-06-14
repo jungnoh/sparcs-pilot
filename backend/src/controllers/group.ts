@@ -10,7 +10,7 @@ import { MeetTimes } from 'models/Group';
  */
 export async function joinGroup(req: Request, res: Response, next: NextFunction) {
   try {
-    const user = req.currentUser!.username;
+    const user = (req.currentUser as any)!.username;
     const group = req.body.group;
     const result = await GroupService.joinGroup(user, group);
     if (result.reason === 'USER_IN_GROUP') {
@@ -28,7 +28,7 @@ export async function joinGroup(req: Request, res: Response, next: NextFunction)
 export async function createGroup(req: Request, res: Response, next: NextFunction) {
   try {
     const result = await GroupService.createGroup({
-      owner: req.currentUser!._id,
+      owner: (req.currentUser as any)!._id,
       category: req.body.category,
       restaurant: req.body.restaurant ? new ObjectId(req.body.restaurant) : undefined,
       peopleNeeded: req.body.peopleNeeded,
@@ -50,7 +50,7 @@ export async function createGroup(req: Request, res: Response, next: NextFunctio
  */
 export async function leaveGroup(req: Request, res: Response, next: NextFunction) {
   try {
-    const user = req.currentUser!.username;
+    const user = (req.currentUser as any)!.username;
     const group = req.body.group;
     const result = await GroupService.leaveGroup(user, group);
     return res.status(result.success ? 200 : 400).json(result);
@@ -93,8 +93,8 @@ export async function viewGroup(req: Request, res: Response, next: NextFunction)
     if (!result) {
       return res.status(404).json({});
     }
-    const inMembers = result.members.filter(x => (x.user as UserDoc)._id.equals(req.currentUser!._id)).length > 0;
-    if (!(result.owner as UserDoc)._id.equals(req.currentUser!._id) && !inMembers) {
+    const inMembers = result.members.filter(x => (x.user as UserDoc)._id.equals((req.currentUser as any)!._id)).length > 0;
+    if (!(result.owner as UserDoc)._id.equals((req.currentUser as any)!._id) && !inMembers) {
       return res.status(404).json({});
     }
     return res.json(result);

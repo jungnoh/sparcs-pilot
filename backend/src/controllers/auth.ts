@@ -31,8 +31,8 @@ export const login = [
   passport.authenticate('local', {failWithError: true}),
   (req: Request, res: Response) => {
     res.json({
-      username: req.currentUser?.username,
-      name: req.currentUser?.name
+      username: (req.currentUser as any)?.username,
+      name: (req.currentUser as any)?.name
     });
   },
   (err: any, _: Request, res: Response, __: NextFunction) => {

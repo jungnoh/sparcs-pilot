@@ -39,7 +39,7 @@ export async function addRestaurant(req: Request, res: Response, next: NextFunct
     const created = await GroupService.addRestaurant(
       req.body.name,
       req.body.categories.filter((x: string) => new ObjectId(x)),
-      req.currentUser!._id
+      (req.currentUser as any)!._id
     );
     return res.status(200).json({created});
   } catch (err) {
