@@ -9,6 +9,7 @@ import GroupCreatePage from '@pages/groups/create';
 import GroupViewPage from '@pages/groups/view';
 import MePage from '@pages/me';
 import MeEditPage from '@pages/me/edit';
+import NotFoundPage from '@pages/404';
 import PageTemplate from '@components/templates/Page';
 
 export default function App() {
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/groups/:groupID" component={GroupViewPage} />
         <Route path="/me/edit" component={MeEditPage} />
         <Route path="/me" exact component={MePage} />
+        <Route component={NotFoundPage} />
       </Switch>
     </PageTemplate>
   );
