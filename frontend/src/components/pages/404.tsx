@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './404.scss';
-import HingingImage from '@src/media/hinging.png';
+import HingingImage from '@components/media/hinging.png';
 import { Typography } from '@material-ui/core';
 
 
