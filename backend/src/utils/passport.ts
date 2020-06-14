@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import {Strategy as LocalStrategy} from 'passport-local';
 import * as UserService from 'services/user';
-import Errors from '@common/literals/errors';
 import { UserDoc } from 'models/User';
 
 /**
@@ -15,7 +14,7 @@ export const localStrategy = new LocalStrategy({
   try {
     const user = (await UserService.authenticate(username, password)).result;
     if (!user) {
-      return done(Errors.WRONG_CREDENTIALS);
+      return done('WRONG_CREDENTIALS');
     }
     return done(null, user);
   } catch (err) {

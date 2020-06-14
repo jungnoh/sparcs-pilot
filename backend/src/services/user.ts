@@ -1,8 +1,6 @@
-import UserModel, {UserDoc} from 'models/User';
+import UserModel, {UserDoc, UserSignup, UserProfile} from 'models/User';
 import { ServiceResult } from 'utils/types';
 import * as Crypto from 'utils/crypto';
-import { UserSignup, UserProfile } from '@common/models/User';
-import Errors from '@common/literals/errors';
 
 export async function authenticate(username: string, password: string): ServiceResult<void, UserDoc> {
   const user = await UserModel.findOne({username});
@@ -18,10 +16,10 @@ export async function authenticate(username: string, password: string): ServiceR
  * @param username 사용자명
  */
 export async function view(username: string):
-ServiceResult<typeof Errors.USER_NEXIST, UserDoc> {
+ServiceResult<'USER_NEXIST', UserDoc> {
   const user = await UserModel.findOne({username});
   if (!user) {
-    return {success: false, reason: Errors.USER_NEXIST};
+    return {success: false, reason: 'USER_NEXIST'};
   }
   return {success: true, result: user};
 }
@@ -31,7 +29,7 @@ ServiceResult<typeof Errors.USER_NEXIST, UserDoc> {
  * @param profile 생성할 사용자 프로필
  */
 export async function create(profile: UserSignup):
-ServiceResult<typeof Errors.USERNAME_EXISTS | typeof Errors.EMAIL_EXISTS, UserDoc> {
+ServiceResult<'USERNAME_EXISTS' | 'EMAIL_EXISTS', UserDoc> {
   // 이메일, 사용자명이 존재하는지 체크
   const existingUser = await UserModel.findOne({$or: [
     {username: profile.username},
@@ -41,12 +39,12 @@ ServiceResult<typeof Errors.USERNAME_EXISTS | typeof Errors.EMAIL_EXISTS, UserDo
     if (existingUser.username === profile.username) {
       return {
         success: false,
-        reason: Errors.USERNAME_EXISTS
+        reason: 'USERNAME_EXISTS'
       };
     } else if (existingUser.email === profile.email) {
       return {
         success: false,
-        reason: Errors.EMAIL_EXISTS
+        reason: 'EMAIL_EXISTS'
       };
     }
   }

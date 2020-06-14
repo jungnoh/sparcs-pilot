@@ -1,5 +1,13 @@
-import FoodCategory from '@common/models/FoodCategory';
 import mongo from 'mongoose';
+
+/**
+ * @description 음식 종류
+ */
+export interface FoodCategory {
+  key: string;
+  name: string;
+}
+
 
 const schema = new mongo.Schema<FoodCategory>({
   key: {required: true, type: String},

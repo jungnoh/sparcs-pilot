@@ -2,8 +2,8 @@
 import { ObjectId } from 'bson';
 import {Request, Response, NextFunction} from 'express';
 import * as GroupService from 'services/group';
-import { MeetTimes } from '@common/models/Group';
 import { UserDoc } from 'models/User';
+import { MeetTimes } from 'models/Group';
 
 /**
  * @description Controller for `POST /group/join`

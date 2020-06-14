@@ -2,7 +2,6 @@ import { Request, Response, NextFunction } from 'express';
 import * as UserService from 'services/user';
 import passport from 'passport';
 import winston from 'winston';
-import Errors from '@common/literals/errors';
 
 export async function signup(req: Request, res: Response, next: NextFunction) {
   try {
@@ -40,7 +39,7 @@ export const login = [
     /**
      * @see AuthService.authenticate reason values
      */
-    if (err === Errors.WRONG_CREDENTIALS) {
+    if (err === 'WRONG_CREDENTIALS') {
       res.status(401).json({reason: err});
     } else {
       winston.warn(`Uncaught error during authentication: ${err}`);

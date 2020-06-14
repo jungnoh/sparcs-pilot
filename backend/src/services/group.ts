@@ -1,9 +1,8 @@
 import {ObjectId} from 'bson';
 import moment from 'moment';
 import FoodCategoryModel, {FoodCategoryDoc} from 'models/FoodCategory';
-import GroupModel, {GroupDoc} from 'models/Group';
+import GroupModel, {GroupDoc, MeetTimes} from 'models/Group';
 import RestaurantModel, {RestaurantDoc} from 'models/Restaurant';
-import { MeetTimes } from '@common/models/Group';
 import { ServiceResult } from 'utils/types';
 import UserModel from 'models/User';
 import { randomString } from 'utils/crypto';

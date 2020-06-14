@@ -7,10 +7,9 @@
     "dev": "run-p dev:backend dev:frontend",
     "dev:backend": "cd backend && npm run dev",
     "dev:frontend": "cd frontend && npm run dev",
-    "pre-commit": "run-s pre-commit-common pre-commit-front pre-commit-back",
+    "pre-commit": "run-s pre-commit-front pre-commit-back",
     "pre-commit-front": "cd frontend && npm run lint-staged",
-    "pre-commit-back": "cd backend && npm run lint-staged",
-    "pre-commit-common": "cd common && npm run lint-staged"
+    "pre-commit-back": "cd backend && npm run lint-staged"
   },
   "keywords": [],
   "author": "",

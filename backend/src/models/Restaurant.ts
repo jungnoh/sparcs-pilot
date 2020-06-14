@@ -1,6 +1,13 @@
-import Restaurant from '@common/models/Restaurant';
 import {ObjectId} from 'bson';
 import mongo from 'mongoose';
+import { FoodCategory } from './FoodCategory';
+import { User } from './User';
+
+export interface Restaurant {
+  categories: FoodCategory[];
+  createdBy?: User | ObjectId;
+  name: string;
+}
 
 const schema = new mongo.Schema<Restaurant>({
   categories: {
