@@ -14,7 +14,7 @@ export default function PageTemplate(props: PageProps) {
   const open = Boolean(anchorEl);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   
-  const isLoggedIn = Cookie.get('connect.sid') !== undefined;
+  const isLoggedIn = Cookie.get('connect.sid') !== undefined && Cookie.get('connect.sid')?.trim() !== '';
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };

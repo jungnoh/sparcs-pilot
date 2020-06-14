@@ -9,7 +9,7 @@ import UserProfile, { UserProfileFields } from '@components/organisms/UserProfil
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function JoinPage(props: {history: any}) {
-  if (!Cookie.get('connect.sid')) {
+  if (!Cookie.get('connect.sid') || Cookie.get('connect.sid')?.trim() !== '') {
     props.history.push('/');
   }
 
