@@ -9,7 +9,7 @@ import UserProfile, { UserProfileFields } from '@components/organisms/UserProfil
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function JoinPage(props: {history: any}) {
-  if (!Cookie.get('connect.sid') || Cookie.get('connect.sid')?.trim() !== '') {
+  if (Cookie.get('connect.sid') && Cookie.get('connect.sid')?.trim() !== '') {
     props.history.push('/');
   }
 
@@ -22,7 +22,19 @@ function JoinPage(props: {history: any}) {
         if (resp.status === 200) {
           alert('가입이 완료되었습니다.');
           props.history.push('/auth/login');
+          return;
         }
+        if (resp.status === 400) {
+          if (resp.data.reason === 'USERNAME_EXISTS') {
+            alert('이미 존재하는 아이디입니다.');
+            return;
+          }
+          if (resp.data.reason === 'EMAIL_EXISTS') {
+            alert('이미 존재하는 이메일입니다.');
+            return;
+          }
+        }
+        alert('오류가 발생했습니다.');
       });
   };
 
