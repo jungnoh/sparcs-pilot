@@ -191,7 +191,9 @@ ServiceResult<'USER_NEXIST', GroupDoc[]> {
   }
   query = query
     .populate('owner', 'username dorm name email')
-    .populate('members.user', 'username dorm name email');
+    .populate('members.user', 'username dorm name email')
+    .populate('category')
+    .populate('restaurant');
   return {
     success: true,
     result: await query

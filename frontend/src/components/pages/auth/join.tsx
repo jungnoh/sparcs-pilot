@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Cookie from 'js-cookie';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Card, Typography } from '@material-ui/core';
@@ -8,7 +9,7 @@ import UserProfile, { UserProfileFields } from '@components/organisms/UserProfil
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function JoinPage(props: {history: any}) {
-  if (sessionStorage.getItem('username') !== null) {
+  if (!Cookie.get('connect.sid')) {
     props.history.push('/');
   }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Cookie from 'js-cookie';
 import { AppBar, Drawer, Toolbar, Typography, IconButton, MenuItem, Menu, List, ListItem, ListItemIcon, ListItemText } from '@material-ui/core';
 import { AccountCircle, Edit as EditIcon, Home as HomeIcon, Menu as MenuIcon, Person as PersonIcon } from '@material-ui/icons';
 import styles from './Page.scss';
@@ -13,7 +14,7 @@ export default function PageTemplate(props: PageProps) {
   const open = Boolean(anchorEl);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   
-  const isLoggedIn = sessionStorage.getItem('username') !== null;
+  const isLoggedIn = Cookie.get('connect.sid') !== undefined;
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };

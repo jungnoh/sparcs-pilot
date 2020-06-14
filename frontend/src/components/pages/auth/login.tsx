@@ -16,7 +16,6 @@ function LoginPage(props: {history: any}) {
     axios.post('/api/auth/login', {username, password}, {validateStatus: () => true})
       .then((resp) => {
         if (resp.status === 200) {
-          sessionStorage.setItem('username', resp.data.username);
           props.history.push(queryString.parse(props.history.location.search)?.return ?? '/');
           return;
         }

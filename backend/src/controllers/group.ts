@@ -97,7 +97,10 @@ export async function viewGroup(req: Request, res: Response, next: NextFunction)
     if (!(result.owner as UserDoc)._id.equals((req.currentUser as any)!._id) && !inMembers) {
       return res.status(404).json({});
     }
-    return res.json(result);
+    return res.json({
+      username: (req.currentUser as any).username,
+      group: result
+    });
   } catch (err) {
     next(err);
   }

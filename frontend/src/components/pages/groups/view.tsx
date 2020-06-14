@@ -12,12 +12,14 @@ function GroupViewPage(props: {history: any}) {
   const {groupID} = useParams();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [group, setGroup] = React.useState<any>(null);
+  const [username, setUsername] = React.useState('');
   const [loading, setLoading] = React.useState(true);
   React.useEffect(() => {
     axios.get(`/api/group/${groupID}`, {validateStatus: () => true})
       .then((resp) => {
         if (resp.status === 200) {
-          setGroup(resp.data);
+          setUsername(resp.data.username);
+          setGroup(resp.data.group);
         }
         setLoading(false);
       });
@@ -39,11 +41,12 @@ function GroupViewPage(props: {history: any}) {
           meetTime={group.meetTime}
           peopleCnt={group.members.length + 1}
           peopleNeeded={group.peopleNeeded}
-          isOwner={sessionStorage.getItem('username') === group.owner.username}
+          isOwner={username === group.owner.username}
           ownerEmail={group.owner.email}
           ownerName={group.owner.name}
           members={group.members}
-          allowLeave={sessionStorage.getItem('username') !== group.owner.username && !group.locked}
+          allowLeave={username !== group.owner.username && !group.locked}
+          myUsername={username}
         />
       )}
     </div>

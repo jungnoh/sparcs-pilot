@@ -11,7 +11,10 @@ export async function myGroups(req: Request, res: Response, next: NextFunction) 
     const isOwner = (req.query.owner as string) ?? undefined;
     const user = (req.currentUser as any)!.username;
     const result = await GroupService.listUserGroups(user, isOwner === undefined ? undefined : Boolean(isOwner));
-    res.status(result.success ? 200 : 400).json(result);
+    res.status(result.success ? 200 : 400).json({
+      groups: result.result,
+      username: (req.currentUser as any).username
+    });
   } catch (err) {
     next(err);
   }

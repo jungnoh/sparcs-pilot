@@ -19,6 +19,7 @@ function MyPage(props: {history: any}) {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = React.useState<any[]>([]);
+  const [username, setUsername] = React.useState('');
 
   React.useEffect(() => {
     setLoading(true);
@@ -27,7 +28,8 @@ function MyPage(props: {history: any}) {
       url += `?owner=${type === 'owner'}`;
     }
     axios.get(url).then((resp) => {
-      setData(resp.data.result);
+      setData(resp.data.groups);
+      setUsername(resp.data.username);
       setLoading(false);
     }).catch(() => setLoading(false));
   }, [type]);
@@ -69,11 +71,12 @@ function MyPage(props: {history: any}) {
           meetTime={group.meetTime}
           peopleCnt={group.members.length + 1}
           peopleNeeded={group.peopleNeeded}
-          isOwner={sessionStorage.getItem('username') === group.owner.username}
+          isOwner={username === group.owner.username}
           ownerEmail={group.owner.email}
           ownerName={group.owner.name}
           members={group.members}
-          allowLeave={sessionStorage.getItem('username') !== group.owner.username && !group.locked}
+          allowLeave={username !== group.owner.username && !group.locked}
+          myUsername={username}
         />
       ))}
     </>

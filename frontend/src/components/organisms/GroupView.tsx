@@ -24,13 +24,13 @@ interface GroupViewProps {
   id: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   history: any;
+  myUsername: string;
 }
 
 export default function GroupView(props: GroupViewProps) {
   const meetFilter = MEET_TIMES.filter(x => x.key === props.meetTime);
   const meetTimeText = meetFilter.length > 0 ? meetFilter[0].name : '';
 
-  const myUsername = sessionStorage.getItem('username');
   const filtered = props.members.filter(x => x.user.username === myUsername);
   const joinName = filtered.length === 0 ? '' : filtered[0].nickname;
 
