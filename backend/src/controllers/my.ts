@@ -9,7 +9,7 @@ import * as GroupService from 'services/group';
 export async function myGroups(req: Request, res: Response, next: NextFunction) {
   try {
     const isOwner = (req.query.owner as string) ?? undefined;
-    const user = req.user!.username;
+    const user = req.currentUser!.username;
     const result = await GroupService.listUserGroups(user, isOwner === undefined ? undefined : Boolean(isOwner));
     res.status(result.success ? 200 : 400).json(result);
   } catch (err) {
@@ -22,7 +22,7 @@ export async function myGroups(req: Request, res: Response, next: NextFunction) 
  */
 export async function getProfile(req: Request, res: Response, next: NextFunction) {
   try {
-    res.json(req.user);
+    res.json(req.currentUser);
   } catch (err) {
     next(err);
   }
@@ -33,7 +33,7 @@ export async function getProfile(req: Request, res: Response, next: NextFunction
  */
 export async function updateProfile(req: Request, res: Response, next: NextFunction) {
   try {
-    const result = await UserService.update(req.user!.username, {
+    const result = await UserService.update(req.currentUser!.username, {
       name: req.body.name,
       phone: req.body.phone,
       dorm: req.body.dorm

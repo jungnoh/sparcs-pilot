@@ -25,7 +25,7 @@ declare global {
 
         interface Request {
             authInfo?: AuthInfo;
-            user?: User;
+            currentUser?: User;
 
             // These declarations are merged into express's Request type
             login(user: User, done: (err: any) => void): void;

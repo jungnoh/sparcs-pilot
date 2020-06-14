@@ -64,6 +64,10 @@ export default async function createApp(_ = false): Promise<express.Express> {
   passport.serializeUser(PassportStrategy.serialize);
   passport.deserializeUser(PassportStrategy.deserialize);
 
+  app.use((req, _, next) => {
+    req.currentUser = req.user as any;
+    next();
+  });
   app.use(router);
   app.all('*', (_, res) => {
     res.status(404).json({success: false});
